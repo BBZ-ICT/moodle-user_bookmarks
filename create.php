@@ -19,7 +19,7 @@
  *
  * @package    block
  * @subpackage block_user_bookmarks
- * @copyright  Jonas Rüegge
+ * @copyright  Jonas Rueegge
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -36,27 +36,26 @@ if ($bookmarkurl = htmlspecialchars_decode($_GET["bookmarkurl"]) and $title = $_
      */
     if (get_user_preferences('user_bookmarks')) {
         $bookmarks = explode(',', get_user_preferences('user_bookmarks'));
-        
+
         if (in_array(($bookmarkurl . "|" . $title), $bookmarks)) {
             print_error(get_string('error:bookmarkalreadyexists', 'block_user_bookmarks'), 'admin');
             die;
         }
 
     } else {
-        $bookmarks = array();
+        $bookmarks = [];
     }
 
     //adds the bookmark at end of array
     $bookmarks[] = $bookmarkurl . "|" . $title;
     $bookmarks = implode(',', $bookmarks);
-    
+
     //adds to preferences table
     set_user_preference('user_bookmarks', $bookmarks);
-    
+
     global $CFG;
     header("Location: " . $CFG->wwwroot . $bookmarkurl);
 } else {
     print_error(get_string('error:invalidsection', 'block_user_bookmarks'), 'admin');
     die;
 }
-

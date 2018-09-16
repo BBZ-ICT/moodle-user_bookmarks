@@ -54,6 +54,7 @@ class block_user_bookmarks extends block_base {
 
     /**
      * All multiple instances of this block
+     *
      * @return bool Returns false
      */
     function instance_allow_multiple() {
@@ -62,22 +63,23 @@ class block_user_bookmarks extends block_base {
 
     /**
      * Set the applicable formats for this block to all
+     *
      * @return array
      */
     function applicable_formats() {
         if (has_capability('moodle/site:config', context_system::instance())) {
-            return array('all' => true);
+            return ['all' => true];
         } else {
-            return array('site' => true);
+            return ['site' => true];
         }
     }
 
     public function specialization() {
-        if(!isset($this->config)){
+        if (!isset($this->config)) {
             $this->config = new stdClass();
             $this->config->title = get_string('blocktitle', 'block_user_bookmarks');
-        }   
-    }  
+        }
+    }
 
     /**
      * Gets the content for this block
@@ -87,18 +89,18 @@ class block_user_bookmarks extends block_base {
     function get_content() {
 
         global $CFG, $PAGE, $DB;
-        
+
         $this->config->title = get_string('blocktitle', 'block_user_bookmarks');
         // First check if we have already generated, don't waste cycles
         if ($this->contentgenerated === true) {
             return $this->content;
         }
         $this->content = new stdClass();
-        
-        $noscript = '<noscript>'.get_string('error:noscript', 'block_user_bookmarks').'</noscript>';
-        $javascript='    <script type="text/javascript">
+
+        $noscript = '<noscript>' . get_string('error:noscript', 'block_user_bookmarks') . '</noscript>';
+        $javascript = '    <script type="text/javascript">
     function updateBookmark(bookmarkURL, defaultTitle, sesskey, wwwroot) {
-        var newBookmarkTitle = prompt(\''.get_string('editbookmarktitle', 'block_user_bookmarks').'\',defaultTitle);
+        var newBookmarkTitle = prompt(\'' . get_string('editbookmarktitle', 'block_user_bookmarks') . '\',defaultTitle);
         if (newBookmarkTitle == "" || newBookmarkTitle == null) {
         newBookmarkTitle = defaultTitle;
         }else {
@@ -113,7 +115,7 @@ class block_user_bookmarks extends block_base {
         window.location = redirectPage;
     }
     function addBookmark(bookmarkURL, defaultTitle, sesskey, wwwroot) {
-        var newBookmarkTitle = prompt(\'' .get_string('enterbookmarktitle', 'block_user_bookmarks'). '\',defaultTitle);
+        var newBookmarkTitle = prompt(\'' . get_string('enterbookmarktitle', 'block_user_bookmarks') . '\',defaultTitle);
         if (newBookmarkTitle == "" || newBookmarkTitle == null) {
                newBookmarkTitle = defaultTitle;
         } else {
@@ -123,14 +125,14 @@ class block_user_bookmarks extends block_base {
         }
     }
     </script>';
-        
+
         if (get_user_preferences('user_bookmarks')) {
-            require_once($CFG->libdir.'/adminlib.php');
+            require_once($CFG->libdir . '/adminlib.php');
 
             $tempbookmarks = explode(',', get_user_preferences('user_bookmarks'));
             /// Accessibility: markup as a list.
-            $contents = array();
-            foreach($tempbookmarks as $bookmark) {
+            $contents = [];
+            foreach ($tempbookmarks as $bookmark) {
                 //the bookmarks are in the following format- url|title
                 //so exploading the bookmark by "|" to get the url and title
                 $tempBookmark = explode('|', $bookmark);
@@ -139,51 +141,55 @@ class block_user_bookmarks extends block_base {
                 //now making a link
                 $contentlink = html_writer::link($contenturl, $tempBookmark[1]);
                 //this is the url to delete bookmark
-                $bookmarkdeleteurl = new moodle_url('/blocks/user_bookmarks/delete.php', array('bookmarkurl'=>$tempBookmark[0], 'sesskey'=>sesskey()));
+                $bookmarkdeleteurl = new moodle_url('/blocks/user_bookmarks/delete.php', [
+                    'bookmarkurl' => $tempBookmark[0],
+                    'sesskey' => sesskey(),
+                ]);
                 //this has the link to delete the bookmark
-                $deleteLink = "<a href='$bookmarkdeleteurl'><img alt='" .get_string('deletebookmark', 'block_user_bookmarks')
-                  . "' title='" .get_string('deletebookmark', 'block_user_bookmarks')
-                  . "' src='$CFG->wwwroot/blocks/user_bookmarks/pix/delete.gif'></a>";
-                
+                $deleteLink = "<a href='$bookmarkdeleteurl'><img alt='" . get_string('deletebookmark', 'block_user_bookmarks')
+                    . "' title='" . get_string('deletebookmark', 'block_user_bookmarks')
+                    . "' src='$CFG->wwwroot/blocks/user_bookmarks/pix/delete.gif'></a>";
+
                 //creating the link to update the title for bookmark
                 $editLink = '
     <a style="cursor: pointer;" onClick="updateBookmark(\''
-   . $tempBookmark[0].'\', \''.$tempBookmark[1].'\', \''.sesskey().'\', \''.$CFG->wwwroot.'\');">
-    <img alt="'.get_string('editbookmark', 'block_user_bookmarks')
-       .'" title="'.get_string('editbookmark', 'block_user_bookmarks')
-       .'" src="'. $CFG->wwwroot.'/blocks/user_bookmarks/pix/edit.gif">
+                    . $tempBookmark[0] . '\', \'' . $tempBookmark[1] . '\', \'' . sesskey() . '\', \'' . $CFG->wwwroot . '\');">
+    <img alt="' . get_string('editbookmark', 'block_user_bookmarks')
+                    . '" title="' . get_string('editbookmark', 'block_user_bookmarks')
+                    . '" src="' . $CFG->wwwroot . '/blocks/user_bookmarks/pix/edit.gif">
     </a>';
                 //setting layout for the bookmark and its delete and edit buttons
-                $contents[] = html_writer::tag('li', $contentlink . " ".$editLink." " . $deleteLink);
-                $bookmarks[]= html_entity_decode($tempBookmark[0]);
+                $contents[] = html_writer::tag('li', $contentlink . " " . $editLink . " " . $deleteLink);
+                $bookmarks[] = html_entity_decode($tempBookmark[0]);
             }
-            $this->content->text = html_writer::tag('ol', implode('', $contents), array('class' => 'list'));
+            $this->content->text = html_writer::tag('ol', implode('', $contents), ['class' => 'list']);
         } else {
-            $bookmarks = array();
+            $bookmarks = [];
         }
 
         $this->content->footer = '';
         $this->page->settingsnav->initialise();
         $node = $this->page->settingsnav->get('root', navigation_node::TYPE_SETTING);
-        
-        $bookmarkurl = htmlspecialchars_decode(str_replace($CFG->wwwroot,'',$PAGE->url));
+
+        $bookmarkurl = htmlspecialchars_decode(str_replace($CFG->wwwroot, '', $PAGE->url));
         $bookmarktitle = $PAGE->title;
 
         if (in_array($bookmarkurl, $bookmarks)) {
             //this prints out the link to unbookmark a page
             $this->content->footer = $javascript . $noscript . '
-    <form style="cursor: hand;">
-    <a style="cursor: pointer;" onClick="deleteBookmark(\''.$bookmarkurl.'\', \''.sesskey().'\', \''.$CFG->wwwroot.'\');"> ('
-     .get_string('deletebookmarkthissite', 'block_user_bookmarks'). ') </a>
-    </form>';
+                    <form style="cursor: hand;">
+                    <a style="cursor: pointer;" onClick="deleteBookmark(\'' . $bookmarkurl . '\', \'' . sesskey() . '\', \'' . $CFG->wwwroot . '\');"> ('
+                . get_string('deletebookmarkthissite', 'block_user_bookmarks') . ') </a>
+                    </form>';
         } else {
             //this prints out link to bookmark a page
             $this->content->footer = $javascript . '
-    <form>
-    <a style="cursor: pointer;" onClick="addBookmark(\''.$bookmarkurl.'\', \''.$bookmarktitle.'\', \''.sesskey().'\', \''.$CFG->wwwroot.'\');">' 
-        . get_string('bookmarkpage', 'block_user_bookmarks'). '</a>
-    </form>';
+                        <form>
+                        <a style="cursor: pointer;" onClick="addBookmark(\'' . $bookmarkurl . '\', \'' . $bookmarktitle . '\', \'' . sesskey() . '\', \'' . $CFG->wwwroot . '\');">'
+                . get_string('bookmarkpage', 'block_user_bookmarks') . '</a>
+                        </form>';
         }
+
         return $this->content;
     }
 }
