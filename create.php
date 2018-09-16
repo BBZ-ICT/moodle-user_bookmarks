@@ -39,7 +39,7 @@ if ($bookmarkurl = htmlspecialchars_decode($_GET["bookmarkurl"]) and $title = $_
         $bookmarks = explode(',', get_user_preferences('user_bookmarks'));
 
         if (in_array(($bookmarkurl . "|" . $title), $bookmarks)) {
-            print_error(get_string('error:bookmarkalreadyexists', 'block_user_bookmarks'), 'admin');
+            print_error(get_string('error:bookmarkalreadyexists', 'block_user_bookmarks'), 'block_user_bookmarks');
             die;
         }
 
@@ -58,6 +58,6 @@ if ($bookmarkurl = htmlspecialchars_decode($_GET["bookmarkurl"]) and $title = $_
     // @TODO use moodle redirect.
     header("Location: " . $CFG->wwwroot . $bookmarkurl);
 } else {
-    print_error(get_string('error:invalidsection', 'block_user_bookmarks'), 'admin');
+    print_error(get_string('error:invalidsection', 'block_user_bookmarks'), 'block_user_bookmarks');
     die;
 }

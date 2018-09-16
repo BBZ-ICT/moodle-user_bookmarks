@@ -48,17 +48,30 @@ class block_user_bookmarks extends block_base {
      * Set the initial properties for the block
      */
     function init() {
-        $this->blockname = get_string('blocktitle', 'block_user_bookmarks');
+        $this->blockname = get_class($this);
         $this->title = get_string('blocktitle', 'block_user_bookmarks');
     }
 
     /**
-     * All multiple instances of this block
-     *
-     * @return bool Returns false
+     * Are you going to allow multiple instances of each block?
+     * If yes, then it is assumed that the block WILL USE per-instance configuration
+     * @return boolean
      */
     function instance_allow_multiple() {
         return false;
+    }
+
+    /**
+     * Is each block of this type going to have instance-specific configuration?
+     * Normally, this setting is controlled by {@link instance_allow_multiple()}: if multiple
+     * instances are allowed, then each will surely need its own configuration. However, in some
+     * cases it may be necessary to provide instance configuration to blocks that do not want to
+     * allow multiple instances. In that case, make this function return true.
+     * I stress again that this makes a difference ONLY if {@link instance_allow_multiple()} returns false.
+     * @return boolean
+     */
+    function instance_allow_config() {
+        return true;
     }
 
     /**
