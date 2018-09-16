@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <XMLDB PATH="blocks/user_bookmarks/db" VERSION="20140905" COMMENT="XMLDB file for Moodle blocks/user_bookmarks">
+  <TABLES>
+    <TABLE NAME="block_user_bookmarks" COMMENT="User Bookmarks">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" NEXT="userid"/>
+        <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" PREVIOUS="id" NEXT="description"/>
+        <FIELD NAME="description" TYPE="char" LENGTH="100" NOTNULL="true" SEQUENCE="false" PREVIOUS="userid" NEXT="url"/>
+        <FIELD NAME="url" TYPE="char" LENGTH="300" NOTNULL="true" SEQUENCE="false" PREVIOUS="userid" NEXT="category"/>
+        <FIELD NAME="category" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="userid" NEXT="priority"/>
+        <FIELD NAME="priority" TYPE="int" LENGTH="5" NOTNULL="false" SEQUENCE="false" NEXT="private"/>
+        <FIELD NAME="private" TYPE="int" LENGTH="1" NOTNULL="true" SEQUENCE="false" PREVIOUS="userid" NEXT="hide"/>
+        <FIELD NAME="hide" TYPE="int" LENGTH="1" NOTNULL="true" SEQUENCE="false" PREVIOUS="courseid"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="userid" TYPE="foreign" FIELDS="userid" REFTABLE="user" REFFIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="userid" UNIQUE="false" FIELDS="userid"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+  </XMLDB>

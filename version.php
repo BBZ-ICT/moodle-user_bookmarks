@@ -1,5 +1,4 @@
 <?php
-
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -16,24 +15,26 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Strings for component 'block_user_bookmarks', language 'de', branch 'MOODLE_20_STABLE'
+ * Version details
  *
  * @package    block
  * @subpackage user_bookmarks
- * Version details
- * @copyright  2013 J. Ruegge
- * @author     Jonas Rueegge
+ * @copyright  2012 Moodle
+ * @author     Authors of Admin Bookmarks:-
+ *               2006 vinkmar
+ *               2011 Rossiani Wijaya (updated)
+ *             Authors of User Bookmarks Old Version:-
+ *               2012 Gurvinder Singh (used admin bookmarks code, updated to create user bookmarks block)
+ *             Authors of User Bookmarks This Version:-
+ *               2013 Jonas Rueegge
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- *
  */
 
-$string['pluginname'] = 'User Bookmarks block';
-$string['user_bookmarks'] = 'User Bookmarks';
-$string['user_bookmarks:addinstance'] = 'Add a new Block for Custom Bookmarks';
-$string['user_bookmarks:myaddinstance'] "Add a new Block for Custom Bookmarks to MyMoodle" 
-$string['user_bookmarks:bookmarkpage'] = 'Bookmark this Site';
-$string['user_bookmarks:deletebookmark'] = 'remove bookmark';
-$string['user_bookmarks:editbookmark'] = 'edit bookmark';
-$string['user_bookmarks:editbookmarktitle'] = 'edit bookmark title';
-$string['user_bookmarks:enterbookmarktitle'] = 'enter bookmark title';
+defined('MOODLE_INTERNAL') || die();
 
+$plugin->version = 2018091600;        // The current plugin version (Date: YYYYMMDDXX)
+$plugin->requires = 2013111803;        // Requires this Moodle version
+$plugin->component = 'block_user_bookmarks'; // Full name of the plugin (used for diagnostics)
+$plugin->release = '1.3';
+$plugin->cron = 300;
+$plugin->maturity = MATURITY_BETA;
