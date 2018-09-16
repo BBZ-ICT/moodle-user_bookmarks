@@ -33,23 +33,19 @@ $string['blocktitle'] = 'User Bookmarks';
 $string['description'] = 'Bookmarks Block where you can set your own Bookmarks';
 
 // Actions.
-$string['bookmarkpage'] = 'Bookmark this Site';
+$string['bookmarkpage'] = 'Bookmark this page';
 $string['deletebookmark'] = 'remove bookmark';
 $string['editbookmark'] = 'edit bookmark';
 $string['editbookmarktitle'] = 'edit bookmark title';
 $string['enterbookmarktitle'] = 'enter bookmark title';
 $string['deletebookmarkthissite'] = 'remove bookmark for this site';
 
-$string['creategroup'] = 'Create new Bookmarkgroup';
-$string['deletegroup'] = 'Delete Bookmarkgroup';
-$string['setgroup'] = 'Move to Bookmarkgroup';
-
 // Errors.
 $string['error:nobookmarksforuser'] = 'You do not have any bookmarks!';
 $string['error:invalidsection'] = 'Invalid Section!';
 $string['error:bookmarkalreadyexists'] = 'Bookmark already Exists!';
 $string['error:nonexistentbookmark'] = 'Bookmark not found!';
-$string['error:noscript'] = 'This Block requires Javascript 3enabled to work!';
+$string['error:noscript'] = 'This Block requires Javascript enabled to work!';
 
 // Privacy provider.
 $string['privacy:metadata:links'] = 'Links stored by the user bookmarks plugin';
