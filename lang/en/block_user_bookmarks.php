@@ -50,3 +50,6 @@ $string['error:invalidsection'] = 'Invalid Section!';
 $string['error:bookmarkalreadyexists'] = 'Bookmark already Exists!';
 $string['error:nonexistentbookmark'] = 'Bookmark not found!';
 $string['error:noscript'] = 'This Block requires Javascript 3enabled to work!';
+
+// Privacy provider.
+$string['privacy:metadata:links'] = 'Links stored by the user bookmarks plugin';
