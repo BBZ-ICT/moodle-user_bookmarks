@@ -27,6 +27,7 @@ if ($bookmarkurl = htmlspecialchars_decode($_GET["bookmarkurl"])
 
         $bookmarkupdated = false;
 
+        // This can be improved by array php function.
         foreach ($bookmarks as $bookmark) {
             $tempBookmark = explode('|', $bookmark);
             if ($tempBookmark[0] == $bookmarkurl) {
@@ -46,6 +47,7 @@ if ($bookmarkurl = htmlspecialchars_decode($_GET["bookmarkurl"])
         set_user_preference('user_bookmarks', $bookmarks);
 
         global $CFG;
+        // @TODO should use normal moodle url and redirect.
         header("Location: " . $CFG->wwwroot . $bookmarkurl);
         die;
     }

@@ -26,7 +26,7 @@ class block_user_boomarks_edit_form extends block_edit_form {
         // A sample string variable with a default value.
         $mform->addElement('text', 'config_title', get_string('blocktitle', 'block_user_bookmarks'));
         $mform->setDefault('config_title', get_string('blocktitle', 'block_user_bookmarks'));
-        $mform->setType('config_title', PARAM_MULTILANG);
+        $mform->setType('config_title', PARAM_TEXT);
 
     }
 }

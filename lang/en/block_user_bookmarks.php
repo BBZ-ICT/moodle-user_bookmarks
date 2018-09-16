@@ -28,11 +28,11 @@
  */
 $string['user_bookmarks:addinstance'] = 'Add a new Block for Custom Bookmarks';
 $string['user_bookmarks:myaddinstance'] = 'Add a new Block for Custom Bookmarks to MyMoodle';
-$string['pluginname'] = 'User Bookmarks block';
-$string['block_name'] = 'User Bookmarks';
+$string['pluginname'] = 'User Bookmarks';
 $string['blocktitle'] = 'User Bookmarks';
 $string['description'] = 'Bookmarks Block where you can set your own Bookmarks';
-/* Actions */
+
+// Actions.
 $string['bookmarkpage'] = 'Bookmark this Site';
 $string['deletebookmark'] = 'remove bookmark';
 $string['editbookmark'] = 'edit bookmark';
@@ -43,7 +43,8 @@ $string['deletebookmarkthissite'] = 'remove bookmark for this site';
 $string['creategroup'] = 'Create new Bookmarkgroup';
 $string['deletegroup'] = 'Delete Bookmarkgroup';
 $string['setgroup'] = 'Move to Bookmarkgroup';
-/* ErrorMSGs */
+
+// Errors.
 $string['error:nobookmarksforuser'] = 'You do not have any bookmarks!';
 $string['error:invalidsection'] = 'Invalid Section!';
 $string['error:bookmarkalreadyexists'] = 'Bookmark already Exists!';

@@ -39,7 +39,7 @@ if ($bookmarkurl = htmlspecialchars_decode($_GET["bookmarkurl"]) and confirm_ses
         }
 
         if ($bookmarkremoved == false) {
-            print_error(get_string('error:nonexistentbookmark', 'block_user_bookmarks'), 'admin');
+            print_error(get_string('error:nonexistentbookmark', 'block_user_bookmarks'), 'block_user_bookmarks');
             die;
         }
 
@@ -51,11 +51,11 @@ if ($bookmarkurl = htmlspecialchars_decode($_GET["bookmarkurl"]) and confirm_ses
         die;
     }
 
-    print_error(get_string('error:nobookmarksforuser', 'block_user_bookmarks'), 'admin');
+    print_error(get_string('error:nobookmarksforuser', 'block_user_bookmarks'), 'block_user_bookmarks');
     die;
 
 } else {
-    print_error(get_string('error:invalidsection', 'block_user_bookmarks'), 'admin');
+    print_error(get_string('error:invalidsection', 'block_user_bookmarks'), 'block_user_bookmarks');
     die;
 }
 

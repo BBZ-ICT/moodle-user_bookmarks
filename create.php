@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Version details
+ * Create a bookmark
  *
  * @package    block
  * @subpackage block_user_bookmarks
@@ -47,14 +47,15 @@ if ($bookmarkurl = htmlspecialchars_decode($_GET["bookmarkurl"]) and $title = $_
         $bookmarks = [];
     }
 
-    //adds the bookmark at end of array
+    // Adds the bookmark at end of array.
     $bookmarks[] = $bookmarkurl . "|" . $title;
     $bookmarks = implode(',', $bookmarks);
 
-    //adds to preferences table
+    // Adds to preferences table.
     set_user_preference('user_bookmarks', $bookmarks);
 
     global $CFG;
+    // @TODO use moodle redirect.
     header("Location: " . $CFG->wwwroot . $bookmarkurl);
 } else {
     print_error(get_string('error:invalidsection', 'block_user_bookmarks'), 'admin');
