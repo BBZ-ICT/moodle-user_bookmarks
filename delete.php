@@ -15,6 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 require('../../config.php');
+defined('MOODLE_INTERNAL') || die();
 
 require_login();
 $context = context_system::instance();

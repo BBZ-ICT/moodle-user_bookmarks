@@ -24,6 +24,10 @@
  */
 
 require_once('../../config.php');
+
+defined('MOODLE_INTERNAL') || die();
+
+// @TODO convert to classes/
 require_once('functions.php');
 
 global $DB, $CFG, $USER, $PAGE;

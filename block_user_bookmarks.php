@@ -65,6 +65,8 @@ class block_user_bookmarks extends block_base {
      * Set the applicable formats for this block to all
      *
      * @return array
+     * @throws coding_exception
+     * @throws dml_exception
      */
     function applicable_formats() {
         if (has_capability('moodle/site:config', context_system::instance())) {
@@ -96,7 +98,7 @@ class block_user_bookmarks extends block_base {
             return $this->content;
         }
         $this->content = new stdClass();
-
+        // @TODO inline scripting? should be updated.
         $noscript = '<noscript>' . get_string('error:noscript', 'block_user_bookmarks') . '</noscript>';
         $javascript = '    <script type="text/javascript">
     function updateBookmark(bookmarkURL, defaultTitle, sesskey, wwwroot) {

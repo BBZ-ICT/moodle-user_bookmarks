@@ -24,6 +24,7 @@
  */
 
 require('../../config.php');
+defined('MOODLE_INTERNAL') || die();
 
 require_login();
 $context = context_system::instance();
