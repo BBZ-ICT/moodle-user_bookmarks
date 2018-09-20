@@ -27,6 +27,7 @@ defined('MOODLE_INTERNAL') || die();
 
 /**
  * Privacy Subsystem for block_user_bookmarks.
+ *
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class provider implements \core_privacy\local\metadata\provider, \core_privacy\local\request\user_preference_provider {
@@ -35,11 +36,13 @@ class provider implements \core_privacy\local\metadata\provider, \core_privacy\l
      * Returns meta-data information about the block_user_bookmarks.
      *
      * @param  \core_privacy\local\metadata\collection $collection A collection of meta-data.
+     *
      * @return \core_privacy\local\metadata\collection Return the collection of meta-data.
      */
     public static function get_metadata(\core_privacy\local\metadata\collection $collection) :
-            \core_privacy\local\metadata\collection {
+    \core_privacy\local\metadata\collection {
         $collection->add_user_preference('user_bookmarks', 'privacy:metadata:links');
+
         return $collection;
     }
 
@@ -54,7 +57,7 @@ class provider implements \core_privacy\local\metadata\provider, \core_privacy\l
         $preference = get_user_preferences('user_bookmarks', null, $userid);
         if (isset($preference)) {
             \core_privacy\local\request\writer::export_user_preference('user_bookmarks', '',
-                    $preference, get_string('privacy:metadata:links', 'block_user_bookmarks'));
+                $preference, get_string('privacy:metadata:links', 'block_user_bookmarks'));
         }
     }
 }

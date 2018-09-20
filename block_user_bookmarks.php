@@ -55,6 +55,7 @@ class block_user_bookmarks extends block_base {
     /**
      * Are you going to allow multiple instances of each block?
      * If yes, then it is assumed that the block WILL USE per-instance configuration
+     *
      * @return boolean
      */
     function instance_allow_multiple() {
@@ -68,6 +69,7 @@ class block_user_bookmarks extends block_base {
      * cases it may be necessary to provide instance configuration to blocks that do not want to
      * allow multiple instances. In that case, make this function return true.
      * I stress again that this makes a difference ONLY if {@link instance_allow_multiple()} returns false.
+     *
      * @return boolean
      */
     function instance_allow_config() {
@@ -169,15 +171,15 @@ class block_user_bookmarks extends block_base {
                 ]);
 
                 // This has the link to delete the bookmark.
-                $deleteLink = '<a class="delete" href="'. $bookmarkdeleteurl . '">
-                                     <i class="fa fa-remove" title="'.
+                $deleteLink = '<a class="delete" href="' . $bookmarkdeleteurl . '">
+                                     <i class="fa fa-remove" title="' .
                     get_string('deletebookmark', 'block_user_bookmarks') . '"></i>
                                 </a>';
 
                 // Creating the link to update the title for bookmark.
                 // @TODO convert to a more Moodle way.
                 $editLink = '<a class="edit" href="#" onClick="updateBookmark(\''
-                                            . $tempBookmark[0] . '\', \'' . $tempBookmark[1] . '\', \'' . sesskey() . '\', \'' . $CFG->wwwroot . '\');">
+                    . $tempBookmark[0] . '\', \'' . $tempBookmark[1] . '\', \'' . sesskey() . '\', \'' . $CFG->wwwroot . '\');">
                                             <i class="fa fa-edit" title="' . get_string('editbookmark', 'block_user_bookmarks') . '" ></i>
                             </a>';
 
