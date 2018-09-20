@@ -1,0 +1,11 @@
+.block_user_bookmarks a.edit, .block_user_bookmarks a.delete {
+    text-decoration: none;
+}
+.block_user_bookmarks a.edit i{
+    color:#000;
+    padding:3px 3px 3px 6px;
+}
+.block_user_bookmarks a.delete i{
+    color: #f00;
+    padding:3px 1px;
+}

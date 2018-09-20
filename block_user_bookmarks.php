@@ -169,18 +169,18 @@ class block_user_bookmarks extends block_base {
                 ]);
 
                 // This has the link to delete the bookmark.
-                $deleteLink = "<a href='$bookmarkdeleteurl'><img alt='" . get_string('deletebookmark', 'block_user_bookmarks')
-                    . "' title='" . get_string('deletebookmark', 'block_user_bookmarks')
-                    . "' src='$CFG->wwwroot/blocks/user_bookmarks/pix/delete.gif'></a>";
+                $deleteLink = '<a class="delete" href="'. $bookmarkdeleteurl . '">
+                                     <i class="fa fa-remove" title="'.
+                    get_string('deletebookmark', 'block_user_bookmarks') . '"></i>
+                                </a>';
 
                 // Creating the link to update the title for bookmark.
                 // @TODO convert to a more Moodle way.
-                $editLink = '<a style="cursor: pointer;" onClick="updateBookmark(\''
+                $editLink = '<a class="edit" href="#" onClick="updateBookmark(\''
                                             . $tempBookmark[0] . '\', \'' . $tempBookmark[1] . '\', \'' . sesskey() . '\', \'' . $CFG->wwwroot . '\');">
-                            <img alt="' . get_string('editbookmark', 'block_user_bookmarks')
-                                            . '" title="' . get_string('editbookmark', 'block_user_bookmarks')
-                                            . '" src="' . $CFG->wwwroot . '/blocks/user_bookmarks/pix/edit.gif">
+                                            <i class="fa fa-edit" title="' . get_string('editbookmark', 'block_user_bookmarks') . '" ></i>
                             </a>';
+
                 // Setting layout for the bookmark and its delete and edit buttons.
                 $contents[] = html_writer::tag('li', $contentlink . " " . $editLink . " " . $deleteLink);
                 $bookmarks[] = html_entity_decode($tempBookmark[0]);
@@ -200,15 +200,15 @@ class block_user_bookmarks extends block_base {
             // This prints out the link to unbookmark a page.
             $this->content->footer = $javascript . $noscript . '
                     <form style="cursor: hand;">
-                    <a style="cursor: pointer;" onClick="deleteBookmark(\'' . $bookmarkurl . '\', \'' . sesskey() . '\', \'' . $CFG->wwwroot . '\');"> ('
-                . get_string('deletebookmarkthissite', 'block_user_bookmarks') . ') </a>
+                    <a class="delete-bookmark btn btn-default"  onClick="deleteBookmark(\'' . $bookmarkurl . '\', \'' . sesskey() . '\', \'' . $CFG->wwwroot . '\');">'
+                . get_string('deletebookmarkthissite', 'block_user_bookmarks') . '</a>
                     </form>';
         } else {
             // @TODO inline styling is slower then external css.
             // This prints out link to bookmark a page.
             $this->content->footer = $javascript . '
                         <form>
-                        <a class="btn btn-default" style="cursor: pointer;" onClick="addBookmark(\'' . $bookmarkurl . '\', \'' . $bookmarktitle . '\', \'' . sesskey() . '\', \'' . $CFG->wwwroot . '\');">'
+                        <a class="add-bookmark btn btn-default" onClick="addBookmark(\'' . $bookmarkurl . '\', \'' . $bookmarktitle . '\', \'' . sesskey() . '\', \'' . $CFG->wwwroot . '\');">'
                 . get_string('bookmarkpage', 'block_user_bookmarks') . '</a>
                         </form>';
         }
