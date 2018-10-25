@@ -32,6 +32,10 @@ $string['pluginname'] = 'User Bookmarks';
 $string['blocktitle'] = 'User Bookmarks';
 $string['description'] = 'Bookmarks Block where you can set your own Bookmarks';
 
+$string['user_bookmarks:addbookmark'] = 'Add bookmarks';
+$string['user_bookmarks:deletebookmark'] = 'Delete bookmarks';
+$string['user_bookmarks:viewbookmarks'] = 'View bookmarks';
+
 // Actions.
 $string['bookmarkpage'] = 'Bookmark this page';
 $string['deletebookmark'] = 'remove bookmark';
