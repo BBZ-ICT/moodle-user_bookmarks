@@ -32,7 +32,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version = 2018091601;        // The current plugin version (Date: YYYYMMDDXX)
+$plugin->version = 2018102500;        // The current plugin version (Date: YYYYMMDDXX)
 $plugin->requires = 2013111803;        // Requires this Moodle version
 $plugin->component = 'block_user_bookmarks'; // Full name of the plugin (used for diagnostics)
 $plugin->release = '1.3';
