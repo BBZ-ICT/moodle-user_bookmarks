@@ -148,7 +148,8 @@ class block_user_bookmarks extends block_base {
         if (get_user_preferences('user_bookmarks')) {
             require_once($CFG->libdir . '/adminlib.php');
 
-            $tempbookmarks = explode(',', get_user_preferences('user_bookmarks'));
+            $tempbookmarks = explode(',/', get_user_preferences('user_bookmarks'));
+
             /// Accessibility: markup as a list.
             $contents = [];
 
@@ -159,7 +160,7 @@ class block_user_bookmarks extends block_base {
                 $tempBookmark = explode('|', $bookmark);
 
                 // Making the url for bookmark.
-                $contenturl = new moodle_url($CFG->wwwroot . $tempBookmark[0]);
+                $contenturl = new moodle_url($CFG->wwwroot . '/' . ltrim($tempBookmark[0] , '/'));
 
                 // Now making a link.
                 $contentlink = html_writer::link($contenturl, $tempBookmark[1]);
